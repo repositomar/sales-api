@@ -1,0 +1,562 @@
+{
+	"info": {
+		"_postman_id": "43b02f44-592a-4daf-8775-cd58dbe5ed74",
+		"name": "sales-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48957859",
+		"_collection_link": "https://omar-hernandez-7041870.postman.co/workspace/sales-api~d61a6177-fc5c-4a4f-a1fb-b60efa721ed1/collection/48957859-43b02f44-592a-4daf-8775-cd58dbe5ed74?action=share&source=collection_link&creator=48957859"
+	},
+	"item": [
+		{
+			"name": "Get Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Items",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "718"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:40:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n        \"name\": \"Guitarra Ibanez RGRT421\",\n        \"description\": \"Guitarra de 6 cuerdas\",\n        \"brand\": \"Ibanez\",\n        \"price\": \"11000.00\",\n        \"stock\": 0,\n        \"isActive\": true,\n        \"createdAt\": \"2025-10-02T23:38:31.000Z\",\n        \"updatedAt\": null\n    },\n    {\n        \"id\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n        \"name\": \"Guitarra Gibson Les Pual Standard\",\n        \"description\": \"Guitarra Gibson\",\n        \"brand\": \"Gibson\",\n        \"price\": \"56000.00\",\n        \"stock\": 0,\n        \"isActive\": true,\n        \"createdAt\": \"2025-10-02T23:40:24.000Z\",\n        \"updatedAt\": null\n    },\n    {\n        \"id\": \"38a07d5c-322d-49d8-9609-0bb6d97f288d\",\n        \"name\": \"Guitarra Jackson SLA6\",\n        \"description\": \"Guitarra baritono de 6 cuerdas\",\n        \"brand\": \"Jackson\",\n        \"price\": \"21000.00\",\n        \"stock\": 0,\n        \"isActive\": true,\n        \"createdAt\": \"2025-10-02T23:39:19.000Z\",\n        \"updatedAt\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Create Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Guitarra Gibson Les Pual Standard\",\n    \"description\": \"Guitarra Gibson\",\n    \"brand\": \"Gibson\",\n    \"price\": 56000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Item",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Guitarra Gibson Les Pual Standard\",\n    \"description\": \"Guitarra Gibson\",\n    \"brand\": \"Gibson\",\n    \"price\": 56000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "233"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:40:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n    \"name\": \"Guitarra Gibson Les Pual Standard\",\n    \"description\": \"Guitarra Gibson\",\n    \"brand\": \"Gibson\",\n    \"price\": 56000,\n    \"stock\": 0,\n    \"isActive\": true,\n    \"createdAt\": \"2025-10-02T23:40:24.000Z\",\n    \"updatedAt\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/item/:itemId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						":itemId"
+					],
+					"variable": [
+						{
+							"key": "itemId",
+							"value": "153a8387-f509-4e12-9826-68a4735d69c6"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Item",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/item/:itemId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "itemId",
+									"value": "153a8387-f509-4e12-9826-68a4735d69c6"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "234"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:41:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n    \"name\": \"Guitarra Ibanez RGRT421\",\n    \"description\": \"Guitarra de 6 cuerdas\",\n    \"brand\": \"Ibanez\",\n    \"price\": \"11000.00\",\n    \"stock\": 0,\n    \"isActive\": true,\n    \"createdAt\": \"2025-10-02T23:38:31.000Z\",\n    \"updatedAt\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"stock\": 15\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/item/:itemId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						":itemId"
+					],
+					"variable": [
+						{
+							"key": "itemId",
+							"value": "153a8387-f509-4e12-9826-68a4735d69c6"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Item",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"stock\": 15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/item/:itemId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "itemId",
+									"value": "153a8387-f509-4e12-9826-68a4735d69c6"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "235"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:41:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n    \"name\": \"Guitarra Ibanez RGRT421\",\n    \"description\": \"Guitarra de 6 cuerdas\",\n    \"brand\": \"Ibanez\",\n    \"price\": \"11000.00\",\n    \"stock\": 15,\n    \"isActive\": true,\n    \"createdAt\": \"2025-10-02T23:38:31.000Z\",\n    \"updatedAt\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Sale",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerName\": \"Juan Pérez\",\n    \"items\": [\n        {\n            \"itemId\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n            \"quantity\": 2\n        },\n        {\n            \"itemId\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n            \"quantity\": 1\n        },\n        {\n            \"itemId\": \"38a07d5c-322d-49d8-9609-0bb6d97f288d\",\n            \"quantity\": 1\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/sales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sales"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Sale",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerName\": \"Juan Pérez\",\n    \"items\": [\n        {\n            \"itemId\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n            \"quantity\": 2\n        },\n        {\n            \"itemId\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n            \"quantity\": 1\n        },\n        {\n            \"itemId\": \"38a07d5c-322d-49d8-9609-0bb6d97f288d\",\n            \"quantity\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "1299"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:43:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"c944d725-c3d1-4aa7-ad1b-46c9972f0e5d\",\n    \"customerName\": \"Juan Pérez\",\n    \"createdAt\": \"2025-10-02T23:43:46.000Z\",\n    \"items\": [\n        {\n            \"id\": \"9a02a6cc-0f14-41fc-a35d-fd5e2df3376f\",\n            \"item\": {\n                \"id\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n                \"name\": \"Guitarra Ibanez RGRT421\",\n                \"description\": \"Guitarra de 6 cuerdas\",\n                \"brand\": \"Ibanez\",\n                \"price\": \"11000.00\",\n                \"stock\": 13,\n                \"isActive\": true,\n                \"createdAt\": \"2025-10-02T23:38:31.000Z\",\n                \"updatedAt\": \"2025-10-02T23:41:25.000Z\"\n            },\n            \"quantity\": 2,\n            \"price\": \"11000.00\",\n            \"createdAt\": \"2025-10-02T23:43:46.000Z\"\n        },\n        {\n            \"id\": \"4a2a4f6f-5c46-4965-aa51-2de90f4dc4ee\",\n            \"item\": {\n                \"id\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n                \"name\": \"Guitarra Gibson Les Pual Standard\",\n                \"description\": \"Guitarra Gibson\",\n                \"brand\": \"Gibson\",\n                \"price\": \"56000.00\",\n                \"stock\": 49,\n                \"isActive\": true,\n                \"createdAt\": \"2025-10-02T23:40:24.000Z\",\n                \"updatedAt\": \"2025-10-02T23:42:47.000Z\"\n            },\n            \"quantity\": 1,\n            \"price\": \"56000.00\",\n            \"createdAt\": \"2025-10-02T23:43:46.000Z\"\n        },\n        {\n            \"id\": \"492d1630-e84c-4455-8aa4-efe07b23855b\",\n            \"item\": {\n                \"id\": \"38a07d5c-322d-49d8-9609-0bb6d97f288d\",\n                \"name\": \"Guitarra Jackson SLA6\",\n                \"description\": \"Guitarra baritono de 6 cuerdas\",\n                \"brand\": \"Jackson\",\n                \"price\": \"21000.00\",\n                \"stock\": 2,\n                \"isActive\": true,\n                \"createdAt\": \"2025-10-02T23:39:19.000Z\",\n                \"updatedAt\": \"2025-10-02T23:42:58.000Z\"\n            },\n            \"quantity\": 1,\n            \"price\": \"21000.00\",\n            \"createdAt\": \"2025-10-02T23:43:46.000Z\"\n        }\n    ],\n    \"total\": \"99000.00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Sales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/sales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sales"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Sales",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/sales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "1301"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:44:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"c944d725-c3d1-4aa7-ad1b-46c9972f0e5d\",\n        \"customerName\": \"Juan Pérez\",\n        \"createdAt\": \"2025-10-02T23:43:46.000Z\",\n        \"items\": [\n            {\n                \"id\": \"9a02a6cc-0f14-41fc-a35d-fd5e2df3376f\",\n                \"item\": {\n                    \"id\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n                    \"name\": \"Guitarra Ibanez RGRT421\",\n                    \"description\": \"Guitarra de 6 cuerdas\",\n                    \"brand\": \"Ibanez\",\n                    \"price\": \"11000.00\",\n                    \"stock\": 13,\n                    \"isActive\": true,\n                    \"createdAt\": \"2025-10-02T23:38:31.000Z\",\n                    \"updatedAt\": \"2025-10-02T23:43:46.000Z\"\n                },\n                \"quantity\": 2,\n                \"price\": \"11000.00\",\n                \"createdAt\": \"2025-10-02T23:43:46.000Z\"\n            },\n            {\n                \"id\": \"4a2a4f6f-5c46-4965-aa51-2de90f4dc4ee\",\n                \"item\": {\n                    \"id\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n                    \"name\": \"Guitarra Gibson Les Pual Standard\",\n                    \"description\": \"Guitarra Gibson\",\n                    \"brand\": \"Gibson\",\n                    \"price\": \"56000.00\",\n                    \"stock\": 49,\n                    \"isActive\": true,\n                    \"createdAt\": \"2025-10-02T23:40:24.000Z\",\n                    \"updatedAt\": \"2025-10-02T23:43:46.000Z\"\n                },\n                \"quantity\": 1,\n                \"price\": \"56000.00\",\n                \"createdAt\": \"2025-10-02T23:43:46.000Z\"\n            },\n            {\n                \"id\": \"492d1630-e84c-4455-8aa4-efe07b23855b\",\n                \"item\": {\n                    \"id\": \"38a07d5c-322d-49d8-9609-0bb6d97f288d\",\n                    \"name\": \"Guitarra Jackson SLA6\",\n                    \"description\": \"Guitarra baritono de 6 cuerdas\",\n                    \"brand\": \"Jackson\",\n                    \"price\": \"21000.00\",\n                    \"stock\": 2,\n                    \"isActive\": true,\n                    \"createdAt\": \"2025-10-02T23:39:19.000Z\",\n                    \"updatedAt\": \"2025-10-02T23:43:46.000Z\"\n                },\n                \"quantity\": 1,\n                \"price\": \"21000.00\",\n                \"createdAt\": \"2025-10-02T23:43:46.000Z\"\n            }\n        ],\n        \"total\": \"99000.00\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Sale",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/sales/:saleId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sales",
+						":saleId"
+					],
+					"variable": [
+						{
+							"key": "saleId",
+							"value": "c944d725-c3d1-4aa7-ad1b-46c9972f0e5d"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Sale",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/sales/:saleId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sales",
+								":saleId"
+							],
+							"variable": [
+								{
+									"key": "saleId",
+									"value": "c944d725-c3d1-4aa7-ad1b-46c9972f0e5d"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "694"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Oct 2025 17:44:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"c944d725-c3d1-4aa7-ad1b-46c9972f0e5d\",\n    \"customerName\": \"Juan Pérez\",\n    \"createdAt\": \"2025-10-02T23:43:46.000Z\",\n    \"total\": \"99000.00\",\n    \"items\": [\n        {\n            \"id\": \"492d1630-e84c-4455-8aa4-efe07b23855b\",\n            \"quantity\": 1,\n            \"price\": \"21000.00\",\n            \"item\": {\n                \"id\": \"38a07d5c-322d-49d8-9609-0bb6d97f288d\",\n                \"name\": \"Guitarra Jackson SLA6\",\n                \"brand\": \"Jackson\"\n            }\n        },\n        {\n            \"id\": \"4a2a4f6f-5c46-4965-aa51-2de90f4dc4ee\",\n            \"quantity\": 1,\n            \"price\": \"56000.00\",\n            \"item\": {\n                \"id\": \"19652cdd-51e4-4d99-8bcf-05fe595da300\",\n                \"name\": \"Guitarra Gibson Les Pual Standard\",\n                \"brand\": \"Gibson\"\n            }\n        },\n        {\n            \"id\": \"9a02a6cc-0f14-41fc-a35d-fd5e2df3376f\",\n            \"quantity\": 2,\n            \"price\": \"11000.00\",\n            \"item\": {\n                \"id\": \"153a8387-f509-4e12-9826-68a4735d69c6\",\n                \"name\": \"Guitarra Ibanez RGRT421\",\n                \"brand\": \"Ibanez\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
