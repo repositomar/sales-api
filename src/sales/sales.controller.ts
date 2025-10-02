@@ -17,8 +17,8 @@ export class SalesController {
     return this.salesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Sale> {
-    return this.salesService.findOne(id);
+  @Get(':saleId')
+  findOne(@Param('saleId') saleId: string): Promise<Sale> {
+    return this.salesService.findOne(saleId);
   }
 }

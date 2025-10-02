@@ -14,4 +14,7 @@ export class Sale {
 
   @OneToMany(() => SaleItem, saleItem => saleItem.sale, { cascade: true })
   items: SaleItem[];
+
+  @Column('decimal', { precision: 12, scale: 2, default: 0 })
+  total: number;
 }

@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateSaleDto } from './dto';
-import { Sale, SaleItem } from './entities';
-import { Item } from 'src/item/entities';
+import { Sale } from './entities/sale.entity';
+import { SaleItem } from './entities/sale-item.entity';
+import { CreateSaleDto } from './dto/create-sale.dto';
+import { Item } from '../item/entities/item.entity';
 
 @Injectable()
 export class SalesService {
@@ -18,14 +19,11 @@ export class SalesService {
     const sale = new Sale();
     sale.customerName = createSaleDto.customerName;
     sale.items = [];
+    let total = 0;
 
     for (const si of createSaleDto.items) {
       const item = await this.itemRepository.findOne({ where: { id: si.itemId } });
       if (!item) throw new NotFoundException(`Item con id ${si.itemId} no encontrado`);
-
-      if (item.stock < si.quantity) {
-        throw new Error(`Stock insuficiente para el item ${item.name}. Disponible: ${item.stock}`);
-      }
 
       const saleItem = new SaleItem();
       saleItem.item = item;
@@ -35,9 +33,13 @@ export class SalesService {
       item.stock -= si.quantity;
       await this.itemRepository.save(item);
 
+      total += si.quantity * Number(item.price);
+
       sale.items.push(saleItem);
     }
 
+    sale.total = total;
+    console.log(10, sale)
     return this.saleRepository.save(sale);
   }
 
@@ -45,9 +47,31 @@ export class SalesService {
     return this.saleRepository.find({ relations: ['items', 'items.item'] });
   }
 
-  async findOne(id: string): Promise<Sale> {
-    const sale = await this.saleRepository.findOne({ where: { id }, relations: ['items', 'items.item'] });
-    if (!sale) throw new NotFoundException(`Venta con id ${id} no encontrada`);
-    return sale;
+  async findOne(saleId: string): Promise<any> {
+    const sale = await this.saleRepository.findOne({
+      where: { id: saleId },
+      relations: ['items', 'items.item'],
+    });
+
+    if (!sale) throw new NotFoundException(`Venta con id ${saleId} no encontrada`);
+
+    const mappedItems = sale.items.map(si => ({
+      id: si.id,
+      quantity: si.quantity,
+      price: si.price,
+      item: {
+        id: si.item.id,
+        name: si.item.name,
+        brand: si.item.brand,
+      }
+    }));
+
+    return {
+      id: sale.id,
+      customerName: sale.customerName,
+      createdAt: sale.createdAt,
+      total: sale.total,
+      items: mappedItems,
+    };
   }
 }
