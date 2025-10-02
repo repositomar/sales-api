@@ -10,6 +10,9 @@ export class Item {
   name: string;
 
   @Column()
+  description: string;
+
+  @Column()
   brand: string;
 
   @Column('decimal', { precision: 10, scale: 2 })
