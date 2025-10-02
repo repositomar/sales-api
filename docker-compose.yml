@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  sales-mysql:
+    image: mysql:8.0
+    container_name: sales-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: salesdb
+      MYSQL_USER: salesuser
+      MYSQL_PASSWORD: salespassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
