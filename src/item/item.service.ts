@@ -31,7 +31,6 @@ export class ItemService {
   }
 
   async update(itemId: string, updateItemDto: UpdateItemDto): Promise<Item> {
-    console.log({itemId, updateItemDto})
     const item = await this.itemRepository.preload({
       id: itemId,
       ...updateItemDto,

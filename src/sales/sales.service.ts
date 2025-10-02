@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Sale } from './entities/sale.entity';
@@ -19,29 +19,53 @@ export class SalesService {
     const sale = new Sale();
     sale.customerName = createSaleDto.customerName;
     sale.items = [];
-    let total = 0;
+    let totalAmount = 0;
 
-    for (const si of createSaleDto.items) {
-      const item = await this.itemRepository.findOne({ where: { id: si.itemId } });
-      if (!item) throw new NotFoundException(`Item con id ${si.itemId} no encontrado`);
+    const products = await Promise.all(
+      createSaleDto.items.map(si =>
+        this.itemRepository.findOne({ where: { id: si.itemId } }),
+      ),
+    );
 
-      const saleItem = new SaleItem();
-      saleItem.item = item;
-      saleItem.quantity = si.quantity;
-      saleItem.price = item.price;
+    for (let i = 0; i < createSaleDto.items.length; i++) {
+      const saleItemDto = createSaleDto.items[i];
+      const product = products[i];
 
-      item.stock -= si.quantity;
-      await this.itemRepository.save(item);
+      if (!product) {
+        throw new NotFoundException(`Item con id ${saleItemDto.itemId} no encontrado`);
+      }
 
-      total += si.quantity * Number(item.price);
+      if (!product.isActive) {
+        throw new BadRequestException(`El item ${product.name} no está activo`);
+      }
 
-      sale.items.push(saleItem);
+      if (product.stock < saleItemDto.quantity) {
+        throw new BadRequestException(
+          `No hay suficiente stock para el item ${product.name}. Stock disponible: ${product.stock}`,
+        );
+      }
     }
 
-    sale.total = total;
-    console.log(10, sale)
+    for (let i = 0; i < createSaleDto.items.length; i++) {
+      const saleItemDto = createSaleDto.items[i];
+      const product = products[i]!;
+
+      const saleItemEntity = new SaleItem();
+      saleItemEntity.item = product;
+      saleItemEntity.quantity = saleItemDto.quantity;
+      saleItemEntity.price = product.price;
+
+      product.stock -= saleItemDto.quantity;
+      await this.itemRepository.save(product);
+
+      totalAmount += saleItemDto.quantity * Number(product.price);
+      sale.items.push(saleItemEntity);
+    }
+
+    sale.total = totalAmount;
     return this.saleRepository.save(sale);
   }
+
 
   async findAll(): Promise<Sale[]> {
     return this.saleRepository.find({ relations: ['items', 'items.item'] });
@@ -55,14 +79,14 @@ export class SalesService {
 
     if (!sale) throw new NotFoundException(`Venta con id ${saleId} no encontrada`);
 
-    const mappedItems = sale.items.map(si => ({
-      id: si.id,
-      quantity: si.quantity,
-      price: si.price,
+    const mappedItems = sale.items.map(saleItemDto => ({
+      id: saleItemDto.id,
+      quantity: saleItemDto.quantity,
+      price: saleItemDto.price,
       item: {
-        id: si.item.id,
-        name: si.item.name,
-        brand: si.item.brand,
+        id: saleItemDto.item.id,
+        name: saleItemDto.item.name,
+        brand: saleItemDto.item.brand,
       }
     }));
 
