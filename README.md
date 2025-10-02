@@ -82,7 +82,30 @@ Verb: PUT
 http://localhost:3000/item/:itemId
 ```
 
+### Create sale
+> It is necessary to send JSON body in the request with customerName and an array of items (each with itemId and quantity). The API will calculate the total and reduce the stock automatically.
+
+```bash
+Verb: POST
+http://localhost:3000/sales
+```
+
+### Get all sales
+> This returns all sales with their items and calculated total`.
+
+```bash
+Verb: GET
+http://localhost:3000/sales
+```
+
+### Get sale by saleId
+> It is necessary to send Path Variable `saleId`.
+
+```bash
+Verb: GET
+http://localhost:3000/sales/:saleId
+```
+
 ```
 ## Further work
 * Do integration tests.
-* Cache the API response to improve performance and have faster response times.
