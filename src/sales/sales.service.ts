@@ -1,18 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Sale } from './entities/sale.entity';
-import { SaleItem } from './entities/sale-item.entity';
-import { CreateSaleDto } from './dto/create-sale.dto';
-import { Item } from '../item/entities/item.entity';
+import { CreateSaleDto } from './dto';
+import { Sale, SaleItem } from './entities';
+import { Item } from 'src/item/entities';
 
 @Injectable()
 export class SalesService {
   constructor(
     @InjectRepository(Sale)
     private saleRepository: Repository<Sale>,
-    @InjectRepository(SaleItem)
-    private saleItemRepository: Repository<SaleItem>,
     @InjectRepository(Item)
     private itemRepository: Repository<Item>,
   ) {}
