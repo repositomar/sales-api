@@ -26,8 +26,24 @@ export class ItemService {
     return item;
   }
 
-  async findAll(): Promise<Item[]> {
-    return this.itemRepository.find(); 
+  async findAll(
+    page: number,
+    limit: number,
+    search: string,
+  ): Promise<any> {
+    const query = this.itemRepository.createQueryBuilder('item');
+
+    if (search) {
+      query.where('item.name LIKE :search', { search: `%${search}%` })
+    }
+
+    query.orderBy('item.created_at', 'DESC');
+
+    query.skip((page - 1) * limit).take(limit);
+
+    const [items, total] = await query.getManyAndCount();
+
+    return { items, total };
   }
 
   async update(itemId: string, updateItemDto: UpdateItemDto): Promise<Item> {
