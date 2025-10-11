@@ -23,10 +23,19 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getResponse()
         : 'Internal server error';
 
-    const formattedMessage =
-      typeof message === 'string'
-        ? message
-        : (message as any)?.message || 'Unexpected error';
+    let formattedMessage: string;
+
+    if (typeof message === 'string') {
+      formattedMessage = message;
+    } else if (
+      typeof message === 'object' &&
+      message !== null &&
+      'message' in message
+    ) {
+      formattedMessage = String((message as { message: unknown }).message);
+    } else {
+      formattedMessage = 'Unexpected error';
+    }
 
     response.status(status).send({
       success: false,

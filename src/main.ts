@@ -34,7 +34,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   const configService = app.get(ConfigService);
-  const port = configService.get('http.port');
+  const portEnv = configService.get<string>('http.port');
+  const port: number = portEnv ? Number(portEnv) : 3000;
 
   configurationSwagger(app);
 
@@ -44,4 +45,6 @@ async function bootstrap() {
       new Logger('bootstrap').log(`Application listening on port ${port}`),
     );
 }
-bootstrap().then(() => Logger.log('Bootstrap ended'));
+bootstrap()
+  .then(() => Logger.log('Bootstrap ended'))
+  .catch((err) => Logger.error('Error during bootstrap', err));
