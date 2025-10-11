@@ -8,7 +8,7 @@ import { CreateItemDto, UpdateItemDto } from './dto';
 export class ItemService {
   constructor(
     @InjectRepository(Item)
-    private itemRepository: Repository<Item>
+    private itemRepository: Repository<Item>,
   ) {}
 
   async create(createItem: CreateItemDto): Promise<Item> {
@@ -26,15 +26,11 @@ export class ItemService {
     return item;
   }
 
-  async findAll(
-    page: number,
-    limit: number,
-    search: string,
-  ): Promise<any> {
+  async findAll(page: number, limit: number, search: string): Promise<any> {
     const query = this.itemRepository.createQueryBuilder('item');
 
     if (search) {
-      query.where('item.name LIKE :search', { search: `%${search}%` })
+      query.where('item.name LIKE :search', { search: `%${search}%` });
     }
 
     query.orderBy('item.created_at', 'DESC');

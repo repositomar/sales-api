@@ -5,9 +5,7 @@ import { Item } from './entities';
 
 @Controller('item')
 export class ItemController {
-  constructor(
-    private readonly itemService: ItemService
-  ) {}
+  constructor(private readonly itemService: ItemService) {}
 
   @Post()
   createItem(@Body() createItemDto: CreateItemDto): Promise<Item> {
@@ -31,8 +29,8 @@ export class ItemController {
   @Put(':itemId')
   updateItem(
     @Param('itemId') itemId: string,
-    @Body() updateItemDto: UpdateItemDto
+    @Body() updateItemDto: UpdateItemDto,
   ): Promise<Item> {
-    return this.itemService.update(itemId, updateItemDto)
+    return this.itemService.update(itemId, updateItemDto);
   }
 }
