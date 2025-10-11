@@ -7,6 +7,8 @@ import {
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 function configurationSwagger(app: NestFastifyApplication) {
   const config = new DocumentBuilder()
@@ -28,6 +30,8 @@ async function bootstrap() {
   // await app.listen(process.env.PORT ?? 3000);
 
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const configService = app.get(ConfigService);
   const port = configService.get('http.port');
